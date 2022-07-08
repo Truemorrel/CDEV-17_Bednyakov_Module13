@@ -15,10 +15,12 @@ namespace PhoneBook
             phoneBook.Add(new Contact("Андрей", 79990000001, "andrew@example.com"));
             Contact men = new Contact("Peter", 79990000003, "andrew@example.com");
 
-            AddUniq(men, phoneBook);
             // проверяем, что добавилось в список
             foreach (var contact in phoneBook)
+            {
                 Console.WriteLine(contact.Name + ": " + contact.PhoneNumber);
+            }
+            AddUniq(men, phoneBook);
         }
         static void AddUniq(Contact contact, List<Contact> phoneBook)
         {
