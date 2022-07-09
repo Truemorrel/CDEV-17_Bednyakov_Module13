@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PhoneBook
 {
@@ -17,9 +18,12 @@ namespace PhoneBook
             // Покажем весь список
             Console.WriteLine("Текущий список контактов: ");
             WriteAllContacts();
+            
+            var stopWatch = Stopwatch.StartNew();
 
             // Попробуем добавить новый контакт, если такого ещё нет
             PhoneBook.TryAdd("Диана", new Contact(79160000002, "diana@example.com"));
+            stopWatch.Stop();
 
             //  Выведем обновлённый список
             Console.WriteLine("Обновленный список контактов: ");
@@ -32,6 +36,7 @@ namespace PhoneBook
             // И покажем результат после изменения
             Console.WriteLine("Список после изменения: ");
             WriteAllContacts();
+            Console.WriteLine($"Время для добавления {stopWatch.Elapsed.TotalMilliseconds} милисекунд.");
         }
 
         // Метод для вывода словаря на консоль
