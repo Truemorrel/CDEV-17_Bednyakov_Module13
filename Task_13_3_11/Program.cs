@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Task_13_3_10
+namespace Task_13_3_11
 {
     internal class Program
     {
@@ -20,7 +20,7 @@ namespace Task_13_3_10
             //    }
             //}
             HashSet<char> hSet = new HashSet<char>(text.ToCharArray());
-            var hDigits = new HashSet<char>(new char[] {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'});
+            var hDigits = new HashSet<char>(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' });
             if (hSet.Overlaps(hDigits))
             {
                 Console.WriteLine($"Текст \"{text}\" содержит цифры.");
@@ -29,10 +29,10 @@ namespace Task_13_3_10
             {
                 Console.WriteLine($"Текст \"{text}\" не содержит цифры.");
             };
-            var hDelimiters = new char[] {  ' ', '\r', '\n', ',', '.' };
-            Console.WriteLine(  ); 
+            var hDelimiters = new char[] { ' ', '\r', '\n', ',', '.' };
+            Console.WriteLine();
             hSet.ExceptWith(hDelimiters);
-            Console.WriteLine($"За исключением знаков препинания и пробелов в тесксте содержится {hSet.Count}" );
+            Console.WriteLine($"За исключением знаков препинания и пробелов в тесксте содержится {hSet.Count}");
         }
     }
 }
