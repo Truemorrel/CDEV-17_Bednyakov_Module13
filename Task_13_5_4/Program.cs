@@ -18,9 +18,11 @@ namespace StackTest
 
                 switch(input)
                 {
-                    case "pop" : words.Pop();
+                    case "pop" :
+                        words.TryPop(out string fromPop);
                         break;
-                    case "peek" : words.Peek();
+                    case "peek" :
+                        words.TryPeek(out string fromPeek);
                         break;
                     default : words.Push(input);
                         break;
