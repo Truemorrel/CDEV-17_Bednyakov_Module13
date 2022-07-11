@@ -22,7 +22,12 @@ namespace StackTest
             while (true)
             {
                 var input = Console.ReadLine();
-
+                string peekWord;
+                if (input == "peek")
+                {
+                    words.TryPeek(out peekWord);
+                    Console.WriteLine($" последний в очереди {peekWord}");
+                }
                 words.Enqueue(input); // ИЗМЕНИТЬ ЗДЕСЬ
             }
         }
