@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 
 
-namespace Task_13_6_1
+namespace Task_13_6_2
 {
     internal class Program
     {
@@ -15,13 +15,14 @@ namespace Task_13_6_1
 
             var noPunctuationText = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
             char[] separators = { ' ', '\n', '\r', '\t', '.', ',' };
-            string[] words = noPunctuationText.Split(separators);
+            string[] words = noPunctuationText.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
-            SortedDictionary<string, int> wordDictionary = new SortedDictionary<string, int>();
+            Dictionary<string, int> wordDictionary = new Dictionary<string, int>();
 
             Stopwatch test = new Stopwatch();
-            
+
             test.Start();
+
             for (int i = 0; i < words.Length; i++)
             {
                 if (wordDictionary.ContainsKey(words[i]))
@@ -30,14 +31,20 @@ namespace Task_13_6_1
                 }
                 else
                 {
-                wordDictionary.TryAdd(words[i],1);
+                    wordDictionary.TryAdd(words[i], 1);
                 }
             };
-            wordDictionary.OrderByDescending(x => x.Key);
-            test.Stop();
-            
-            Console.WriteLine($"В словарь загружено {wordDictionary.Count} из {words.Length} слов исходного текста, за {test.Elapsed.TotalSeconds} секунд.");
+            IEnumerable<KeyValuePair<string, int>> hitWordDictionary = wordDictionary.OrderByDescending(x => x.Value);
 
+            test.Stop();
+
+            Console.WriteLine($"В словаре загружено {hitWordDictionary.Count()} уникальных слов и отсортировано по рейтингу употребления за {test.Elapsed.TotalMilliseconds} милисекунд.");
+            Console.WriteLine("Чаще всего встречаются 10 слов");
+            foreach (var p in hitWordDictionary.Take(10))
+            {
+                Console.WriteLine($"{p.Key} : {p.Value}");
+
+            }
         }
     }
 }
